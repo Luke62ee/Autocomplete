@@ -26,6 +26,10 @@ class BSTMap {
   friend ostream &operator<<(ostream &out, const BSTMap &bst);
 
 public:
+  //**self-note
+  // When I use key_type in other code, it refers to string
+  // mapped_type represents a large unsigned integer
+  // Therefore, value_type = pair<string, uint64_t>
   using key_type = string;
   using mapped_type = uint64_t;
   using value_type = pair<key_type, mapped_type>;
@@ -107,6 +111,9 @@ public:
   // not == to each other
   bool operator!=(const BSTMap &other) const;
 
+  // insert
+  void insert(const value_type& item);
+
 private:
   // Node for BST
   struct Node {
@@ -140,9 +147,36 @@ private:
   // helper function for displaying tree sideways, works recursively
   static ostream &printVertical(ostream &out, Node *curr);
 
+  // A helper function for creating a deep copy of a BST node and its subtrees
+  void BSTMapHelper(Node*& newNode, const Node* oldNode);
+  
   // height of a Node, nullptr is 0, root is 1, static, no access to 'this'
   // helper function to height(), used by printVertical
   static int getHeight(const Node *n);
+
+  // Balance helper
+  void rebalanceHelper(const vector<value_type> &elements, int start, int end);
+
+  // A helper function for calulating the size of tree
+  int sizeHelper(const Node* root) const;
+
+  vector<value_type> &getHelper(Node* currentNode, const key_type& key, vector<value_type>& accumulatedValues) const;
+
+  Node* insertHelper(const value_type& item, Node* currentNode);
+
+  bool isSameTree(Node* p, Node* q) const;
+
+  // A helper function for inorder traversal
+  void inorderHelper(void visit(const value_type &item), Node* root) const;
+
+  // A helper function for preorder traversal
+  void preorderHelper(void visit(const value_type &item), Node* root) const;
+
+  // A helper function for postorder traversal
+  void postorderHelper(void visit(const value_type &item), Node* root) const;
+
+  // A helper function that can be used for destructor and clear function
+  void removeAllTreeHelper(Node* currentNode);
 };
 
 #endif // BSTMAP_H
