@@ -104,10 +104,73 @@ void test03() {
   cout << "Ending test03" << endl;
 }
 
+void test04() {
+  cout << "Starting test03" << endl;
+  cout << "* Testing traversal" << endl;
+  BSTMap b;
+  b["a"] = 1;
+  b["c"] = 3;
+  b["d"] = 4;
+  b["g"] = 7;
+  b["h"] = 8;
+
+  // Testing inorder traversal
+  globalSS.str("");
+  b.inorder(printer);
+  string order = globalSS.str();
+  assert(order == "[a=1][c=3][d=4][g=7][h=8]");
+
+  // Testing preorder traversal
+  globalSS.str("");
+  b.preorder(printer);
+  order = globalSS.str();
+  assert(order == "[a=1][c=3][d=4][g=7][h=8]");
+
+  // Testing postorder traversal
+  globalSS.str("");
+  b.postorder(printer);
+  order = globalSS.str();
+  assert(order == "[h=8][g=7][d=4][c=3][a=1]");
+
+  cout << "Ending test04" << endl;
+}
+
+void test05() {
+  cout << "Starting test04" << endl;
+  cout << "* Testing traversal" << endl;
+  BSTMap b;
+  b["m"] = 13;
+  b["j"] = 10;
+  b["o"] = 15;
+  b["i"] = 9;
+  b["k"] = 11;
+
+  // Testing inorder traversal
+  globalSS.str("");
+  b.inorder(printer);
+  string order = globalSS.str();
+  assert(order == "[i=9][j=10][k=11][m=13][o=15]");
+
+  // Testing preorder traversal
+  globalSS.str("");
+  b.preorder(printer);
+  order = globalSS.str();
+  assert(order == "[m=13][j=10][i=9][k=11][o=15]");
+
+  // Testing postorder traversal
+  globalSS.str("");
+  b.postorder(printer);
+  order = globalSS.str();
+  assert(order == "[i=9][k=11][j=10][o=15][m=13]");
+
+  cout << "Ending test05" << endl;
+}
+
 // // Calling all test functions
 void testBSTAll() {
   test01();
   test02();
   test03();
-  // TODO(student) Add more tests
+  test04();
+  test05();
 }
