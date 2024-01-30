@@ -6,6 +6,7 @@
 // Uses Node which holds the data
 
 #include "bstmap.h"
+#include <algorithm>>
 #include <cassert>
 
 using namespace std;
