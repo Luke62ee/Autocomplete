@@ -45,8 +45,7 @@ echo "   (ignore warnings from system headers, such as \"13554 warnings generate
 echo "====================================================="
 
 if hash clang-tidy 2>/dev/null; then
-  clang-tidy *.cpp -- -std=c++11
-else
+  clang-tidy *.cpp -- -std=c++11 
   echo "WARNING: clang-tidy not available."
 fi
 
